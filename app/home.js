@@ -103,7 +103,11 @@ export default Home = () => {
                                         paddingHorizontal: 5,
                                         borderRadius: '50%',
                                     }}
-                                >3</Text>
+                                >{
+                                        allNotes.length
+                                    }
+
+                                </Text>
                             </View>
 
                         </>
@@ -118,7 +122,7 @@ export default Home = () => {
                 <ScrollView>
                     {
                         allNotes.map((note) => {
-                            return <NoteCard key={note.id} note={note} />
+                            return <NoteCard key={note.id} note={note} setAllNotes={setAllNotes} allNotes={allNotes} />
                         })
                     }
                 </ScrollView>

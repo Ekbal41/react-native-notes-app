@@ -2,7 +2,18 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 export default function InputBox({ setAllNotes }) {
-    const [newNote, setNewNote] = useState();
+    const [input, setInput] = useState('');
+    const handlePress = () => {
+        const newNote = {
+            id: uuidv4(),
+            title: 'Static Title',
+            body: input,
+        }
+        setAllNotes(prev => [newNote, ...prev]
+
+        )
+        setInput('')
+    }
 
     return (
         <View>
@@ -27,17 +38,11 @@ export default function InputBox({ setAllNotes }) {
 
 
                     }}
+                    value={input}
 
                     onChange={
                         (e) => {
-
-                            setNewNote(
-                                {
-                                    id: uuidv4(),
-                                    title: 'Static Title',
-                                    body: e.target.value,
-                                }
-                            )
+                            setInput(e.target.value)
                         }
                     }
                 />
@@ -52,11 +57,7 @@ export default function InputBox({ setAllNotes }) {
 
                     }}
                     onPress={
-                        setAllNotes(prev => [
-                            ...prev,
-                            newNote
-                        ]
-                        )
+                        handlePress
                     }
 
                 >

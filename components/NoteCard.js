@@ -1,8 +1,19 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-export default function NoteCard({ note }) {
+export default function NoteCard({ note, setAllNotes, allNotes }) {
+    const handleDelete = (id) => {
+
+        const updatedNotes = allNotes.filter(note => {
+            return note.id !== id;
+        })
+        setAllNotes([
+            ...updatedNotes
+        ])
+
+
+    }
 
     return (
-        <View>
+        <View  >
             <View style={{
                 backgroundColor: '#fff',
                 padding: 10,
@@ -32,6 +43,9 @@ export default function NoteCard({ note }) {
                             borderRadius: "50%",
                             padding: 5,
                             backgroundColor: '#fff',
+                        }}
+                        onPress={() => {
+                            handleDelete(note.id)
                         }}
                     >
                         <Text>X</Text>
