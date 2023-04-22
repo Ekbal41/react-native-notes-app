@@ -119,13 +119,17 @@ export default Home = () => {
             }}>
                 <Welcome />
                 <InputBox setAllNotes={setAllNotes} />
-                <ScrollView>
-                    {
-                        allNotes.map((note) => {
-                            return <NoteCard key={note.id} note={note} setAllNotes={setAllNotes} allNotes={allNotes} />
-                        })
-                    }
-                </ScrollView>
+                <View style={{
+                    maxHeight: "50%"
+                }}>
+                    <ScrollView>
+                        {
+                            allNotes.map((note) => {
+                                return <NoteCard key={note.id} note={note} setAllNotes={setAllNotes} allNotes={allNotes} />
+                            })
+                        }
+                    </ScrollView>
+                </View>
             </View>
         </SafeAreaView>
 
